@@ -3,6 +3,7 @@ import pygame, math, time, sys, datetime, locale
 from pygame.locals import *
 import turnTable
 import returnItemGUI
+import thermometer
 
 class MainScreen():
     def __init__(self):
@@ -22,12 +23,17 @@ class MainScreen():
         self.currentTime = str(self.weatherForecast.currentTime)[10:16]
         self.currentTemp = str(self.weatherForecast.currentTemp)
         self.state="turn"
+	self.tempInside=None
+#	while self.tempInside==None:
+	self.tempInside=thermometer.read_temp()
+
 
     def main(self):
         TICKS = pygame.time.get_ticks()+1000
         self.fillScreen()
         while not pygame.event.peek(pygame.QUIT):
-            self.fillScreen()
+            self.tempInside=thermometer.read_temp()
+	    self.fillScreen()
             self.handleEvents()
             pygame.time.delay(TICKS-pygame.time.get_ticks())
             TICKS += 1000  
@@ -90,6 +96,7 @@ class MainScreen():
         self.SCREEN.blit(pygame.font.SysFont('Arial', 30, bold=True, italic=False).render(str(self.maxTemp)+"F at " + str(self.maxTime)[0:6], True, (255,255,255)), (550, 300))
         self.SCREEN.blit(pygame.font.SysFont('Arial', 30, bold=True, italic=False).render(str(self.minTemp)+"F at " + str(self.minTime)[0:6], True, (255,255,255)), (130, 300))
         self.SCREEN.blit(pygame.font.SysFont('Arial', 30, bold=True, italic=False).render(str(self.currentTemp)+"F", True, (255,255,255)), (200, 220))
+	self.SCREEN.blit(pygame.font.SysFont('Arial', 30, bold=True, italic=False).render(str(self.tempInside)[0:5]+"F", True, (255,255,255)), (550, 220))
         self.SCREEN.blit(pygame.font.SysFont('Arial', 30, bold=True, italic=False).render(str(self.maxPrecip)+ " at " + str(self.precipTime)[0:6], True, (255,255,255)), (300, 400))
         self.drawButtons()
         self.drawImage()
