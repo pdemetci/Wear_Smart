@@ -87,7 +87,6 @@ class WeatherForecast():
 	 		##only add the data corresponds to today
 	 		if local_time.day == self.currentTime.day:
 	 			self.precipProbability.append((str(local_time), data.precipProbability))
-	 			self.precipIntensity.append((str(local_time), data.precipIntensity))
 
 	 	##get max precip probability during a day(today)
 	 	self.maxPrecipProb=max(self.precipProbability, key=itemgetter(1))
@@ -95,10 +94,10 @@ class WeatherForecast():
 
 
 if __name__ == '__main__':
-api_key= "18e78bb19491e1929765a1354c99d45a"
-#Latitude and Longitude information for Boston
-lat=42.27453
-lng=-71.243861
-weather = WeatherForecast(api_key=api_key, lat=lat, lng=lng)
-weather.getWeatherForecast()
+	api_key= "18e78bb19491e1929765a1354c99d45a"
+	#Latitude and Longitude information for Boston
+	lat=42.27453
+	lng=-71.243861
+	weather = WeatherForecast(api_key=api_key, lat=lat, lng=lng)
+	weather.getWeatherForecast()
 
