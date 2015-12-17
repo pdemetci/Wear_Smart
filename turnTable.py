@@ -4,7 +4,7 @@ import time
 import random
 import pygame
 import MainScreen
-
+import goodWeatherGUI
 class turnTable:	
 	def __init__ (self):
 		self.weatherForecast = WeatherForecast(api_key= "18e78bb19491e1929765a1354c99d45a", lat=42.27453, lng=-71.243861)
@@ -45,8 +45,9 @@ class turnTable:
 		elif self.weatherForecast.currentTemp < 10 or self.weatherForecast.averageTemp < 10: 		# if it's cold
 			self.status = "4"							# hands scarf
 		else:
-			self.status = "1" #<-- if the weather is good enough that the user does not need any of the items, this is displayed in the "goodWeatherGUI"
-
+			a=goodWeatherGUI.goodWeatherGUI()  #<-- if the weather is good enough that the user does not need any of the items, this is displayed in the "goodWeatherGUI"
+			a.main()
+			
 	def communicateToSerial(self):
 		"""
 		Writes self.state to the serial port for Arduino to read.
