@@ -39,28 +39,28 @@ class returnGUI():
 
             if 50<mouseX<300 and 180<mouseY<260 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (50,180,300,80))
-                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Umbrella", True, (50, 50, 50)), (70, 110))
+                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Umbrella", True, (50, 50, 50)), (130, 220))
                 pygame.display.update()	
                 if self.ser.isOpen():
                     self.ser.write("5")
                     time.sleep(1)
             if 50<mouseX<350 and 350<mouseY<430 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (50,350,300,80))
-                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Sun Cap", True, (50, 50, 50)), (70, 110))
+                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Sun Cap", True, (50, 50, 50)), (130, 370))
                 pygame.display.update()
                 if self.ser.isOpen():
                     self.ser.write("6")
                     time.sleep(1)
             if 450<mouseX<750 and 180<mouseY<260 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (45,180,300,80))
-                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Cardigan", True, (50, 50, 50)), (70, 110))
+                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Cardigan", True, (50, 50, 50)), (530, 200))
                 pygame.display.update()
                 if self.ser.isOpen():
                     self.ser.write("7")
                     time.sleep(1)
             if 450<mouseX<750 and 350<mouseY<430 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (450,350,300,80))
-                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Scarf", True, (50, 50, 50)), (70, 110))
+                self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Scarf", True, (50, 50, 50)), (530, 370))
                 pygame.display.update()
                 if self.ser.isOpen():
                     self.ser.write("8")
