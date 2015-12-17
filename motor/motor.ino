@@ -5,6 +5,10 @@ control
 
 For use with the Adafruit Motor Shield v2 
 ---->	http://www.adafruit.com/products/1438
+
+cd Desktop/Wear_Smart
+python MainScreen.py
+
 */
 
 
@@ -50,7 +54,7 @@ void setup() {
 
   
   //Print function list for user selection
-    Serial.println("Enter number for control option:");
+    //Serial.println("Enter number for control option:");
 //  Serial.println("0. GO back to default position");
 //  Serial.println("1. Go to 1state// check ir sensor// going back");
 //  Serial.println("2. Go to 2state// check ir sensor// going back");
@@ -70,17 +74,17 @@ void loop() {
       
       if (user_input =='0')
       {
-         Serial.println("Go to default position according to the current sate ");
+         //Serial.println("Go to default position according to the current sate ");
          
          if (lastdir)//Forward true
          {
-            Serial.println("Going Backward");
+            //Serial.println("Going Backward");
             StepBackward_state(count);         
          }
          else
          {
             StepForward_state(count);
-            Serial.println("Going Forward");
+            //Serial.println("Going Forward");
          }
          count=0; //reset count after going backto default position
          delay(2000);
@@ -88,12 +92,12 @@ void loop() {
       
       else if (user_input =='1')
       {
-         Serial.println("Moving forward one state => 72 degrees for the disk, 140 steps for the motor.");
+         //Serial.println("Moving forward one state => 72 degrees for the disk, 140 steps for the motor.");
          StepForward_state(1);
          count+=1; //use count to check current state
          Itemonhanger=true;
          //function to check the change in the distance sensor(compare absolute sensorvalue and difference of the sensor value)
-         Serial.println("press x to exit from IR sensor manually");
+         //Serial.println("press x to exit from IR sensor manually");
          while (Itemonhanger)
          {
             Check_irsensor(IR0);
@@ -103,12 +107,13 @@ void loop() {
          StepBackward_state(1);
          count=0;
          delay(2000);//wait before the stepper motor release
+         Serial.println("check temp");
          
          
       }
       else if(user_input =='2')
       {
-        Serial.println("Moving forward two states => 144 degrees for the disk, 280degrees for the motor.");
+        //Serial.println("Moving forward two states => 144 degrees for the disk, 280degrees for the motor.");
         StepForward_state(2);
         count+=2;
         Itemonhanger=true;
@@ -123,11 +128,12 @@ void loop() {
         StepBackward_state(2);
         count=0;
         delay(2000);
+        Serial.println("check temp");
                    
       }
       else if(user_input =='3')
       {
-        Serial.println("Moving forward three states- => 216 degrees for the disk, 420degrees for the motor.");
+        //Serial.println("Moving forward three states- => 216 degrees for the disk, 420degrees for the motor.");
         StepBackward_state(2);
         count+=3;
         Itemonhanger=true;
@@ -141,11 +147,12 @@ void loop() {
         delay(2000); // wait after user take off their item
         StepForward_state(2);
         count=0;
-        delay(2000); //wait 1second before release the stepper motor 
+        delay(2000); //wait 1second before release the stepper motor
+        //Serial.println("c"); 
       }
       else if(user_input =='4')
       {
-        Serial.println("Moving forward four states- => 288 degrees for the disk, 560degrees for the motor.");
+        //Serial.println("Moving forward four states- => 288 degrees for the disk, 560degrees for the motor.");
         StepBackward_state(1);
         count+=4;
         Itemonhanger=true;
@@ -159,11 +166,12 @@ void loop() {
         delay(2000); // wait after user take off their item
         StepForward_state(1);
         count=0;
-        delay(2000);         
+        delay(2000);
+        //Serial.println("d");
       }
       else if(user_input =='5')
       {
-        Serial.println("Only Moving to 1 state not coming back");
+        //Serial.println("Only Moving to 1 state not coming back");
         StepForward_state(1);
         count+=1;  //state is 1
         lastdir=true; //last direction is true(Forwarrd)
@@ -171,7 +179,7 @@ void loop() {
       }
       else if(user_input =='6')
       {
-        Serial.println("Only Moving to 2 state not coming back");
+        //Serial.println("Only Moving to 2 state not coming back");
         StepForward_state(2);
         count+=2;  //state is 2
         lastdir=true; //last direction is true(Forwarrd)
@@ -179,7 +187,7 @@ void loop() {
       }
       else if(user_input =='7')
       {
-        Serial.println("Only Moving forward 3 state not coming back");
+       // Serial.println("Only Moving forward 3 state not coming back");
         StepBackward_state(2);
         count+=2;  //turn 2
         lastdir=false; //last direction is false(Backward)
@@ -187,7 +195,7 @@ void loop() {
       }
       else if(user_input =='8')
       {
-        Serial.println("Only Moving forward 4 state not coming back");
+        //Serial.println("Only Moving forward 4 state not coming back");
         StepBackward_state(1);
         count+=1;  //turn1
         lastdir=false; //last direction is false(backward)
@@ -195,7 +203,7 @@ void loop() {
       }
       else
       {
-        Serial.println("Invalid option entered.");
+       // Serial.println("Invalid option entered.");
         
       }
   }
@@ -223,10 +231,10 @@ void Check_irsensor(const int state)
     sensorValue= analogRead(state);
     outputValue=map(sensorValue, 0, 1023,0,255);
     
-    Serial.print("output = ");
-    Serial.print(outputValue);
-    Serial.print("\t difference= ");
-    Serial.println(previousValue0-outputValue);
+   // Serial.print("output = ");
+   // Serial.print(outputValue);
+    //Serial.print("\t difference= ");
+   // Serial.println(previousValue0-outputValue);
     if ((previousValue0 !=0) && (abs(previousValue0-outputValue)>40))// if the item is taken off, turn it back
     {
       Itemonhanger=false;

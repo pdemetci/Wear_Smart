@@ -15,27 +15,32 @@ class turnTable:
 		self.weatherForecast.getWeatherForecast()
 		self.checkPrecip()
 		self.communicateToSerial()
-		self.checkTemp()
-		self.communicateToSerial()
+		while True:
+			print self.ser.readline()
+			if self.ser.readline()=="check temp":
+				self.checkTemp()
+				self.communicateToSerial()
+				break
 	def checkPrecip(self):
 		(self.precipTime, self.maxPrecip) = self.weatherForecast.maxPrecipProb
-		if self.maxPrecip> 0.5: 			# if it rains
+		if True: 			# if it rains
 			self.status = "1" 		# hands umbrella
 		else:	
 			if self.weatherForecast.icon=="clear-day" or self.weatherForecast.icon=="clear-night" or self.weatherForecast.icon=="partly-cloudy-day" or self.weatherForecast.icon=="partly-cloudy-night":					# if sunny is true
 				self.status = "3" 		# hands sun cap
 			else:
-				self.status = "1" 		# goes to default
+				self.status = "0" 		# goes to default
 
 	def checkTemp(self):
 		(self.maxTime,self.maxTemp) = self.weatherForecast.maxTemp
 		(self.minTime,self.minTemp) = self.weatherForecast.minTemp
-		if self.maxTemp - self.minTemp > 18: 		# if the temperature difference is large
-			self.status = "2"				# hands cardigan
+		if True: 		# if the temperature difference is large
+			self.status = "2"
+						# hands cardigan
 		elif self.weatherForecast.currentTemp < 10 or self.weatherForecast.averageTemp < 10: 		# if it's cold
 			self.status = "4"							# hands scarf
 		else:
-			self.status = "1"							# goes to default
+			self.status = "0"							# goes to default
 
 	def communicateToSerial(self):
 		ser = serial.Serial(port = "/dev/ttyACM0", baudrate=9600)

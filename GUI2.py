@@ -1,3 +1,4 @@
+
 from weatherForecastInfo import WeatherForecast
 import pygame, math, time, syslog, sys, glob, datetime, locale
 from pygame.locals import *
@@ -41,7 +42,10 @@ class returnGUI():
         random.seed()
         for event in events:
             if 50<mouseX<200 and 100<mouseY<140 and event.type==MOUSEBUTTONDOWN:
-                if ser.isOpen():
+		pygame.draw.rect(self.SCREEN, (255,255,255), (50,100,150,40))
+        	self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Umbrella", True, (50, 50, 50)), (70, 110))
+		pygame.display.update()	
+		if ser.isOpen():
                     ser.write("5")
                     time.sleep(1)
             if 50<mouseX<200 and 180<mouseY<220 and event.type==MOUSEBUTTONDOWN:
