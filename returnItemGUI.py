@@ -12,7 +12,7 @@ class returnGUI():
         pygame.init()
         self.SCREEN = pygame.display.set_mode((800, 600))
         self.state=None
-        # self.ser=serial.Serial("/dev/ttyACM0", 9600, timeout=5)
+        self.ser=serial.Serial("/dev/ttyACM0", 9600, timeout=5)
 
     def GUI_display(self):
         self.SCREEN.fill((18,151,147))
@@ -35,43 +35,39 @@ class returnGUI():
     def handleEvents(self):
         mouseX,mouseY=pygame.mouse.get_pos()
         events = pygame.event.get()
-        # ser = serial.Serial(port = "/dev/ttyACM0", baudrate=9600)
-        # ser.close()
-        # ser.open()
-        # random.seed()
         for event in events:
 
             if 50<mouseX<300 and 180<mouseY<260 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (50,180,300,80))
                 self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Umbrella", True, (50, 50, 50)), (70, 110))
                 pygame.display.update()	
-                if ser.isOpen():
-                    ser.write("5")
+                if self.ser.isOpen():
+                    self.ser.write("5")
                     time.sleep(1)
             if 50<mouseX<350 and 350<mouseY<430 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (50,350,300,80))
                 self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Sun Cap", True, (50, 50, 50)), (70, 110))
                 pygame.display.update()
-                if ser.isOpen():
-                    ser.write("6")
+                if self.ser.isOpen():
+                    self.ser.write("6")
                     time.sleep(1)
             if 450<mouseX<750 and 180<mouseY<260 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (45,180,300,80))
                 self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Cardigan", True, (50, 50, 50)), (70, 110))
                 pygame.display.update()
-                if ser.isOpen():
-                    ser.write("7")
+                if self.ser.isOpen():
+                    self.ser.write("7")
                     time.sleep(1)
             if 450<mouseX<750 and 350<mouseY<430 and event.type==MOUSEBUTTONDOWN:
                 pygame.draw.rect(self.SCREEN, (255,255,255), (450,350,300,80))
                 self.SCREEN.blit(pygame.font.SysFont('Arial', 20, bold=True, italic=False).render("Scarf", True, (50, 50, 50)), (70, 110))
                 pygame.display.update()
-                if ser.isOpen():
-                    ser.write("8")
+                if self.ser.isOpen():
+                    self.ser.write("8")
                     time.sleep(1)
             if 420<mouseX<800 and 500<mouseY<370 and event.type==MOUSEBUTTONDOWN:
-                if ser.isOpen():
-                    ser.write("0")
+                if self.ser.isOpen():
+                    self.ser.write("0")
                     time.sleep(1)
             if 0<mouseX<400 and 500<mouseY<570 and event.type==MOUSEBUTTONDOWN:
                 b=MainScreen.MainScreen()
